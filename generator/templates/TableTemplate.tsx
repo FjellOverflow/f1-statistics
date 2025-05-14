@@ -18,10 +18,21 @@ export default function TableTemplate({
 
 	return (
 		<BasicTemplate {...props}>
-			<div tw="flex mx-auto">
+			<div
+				style={{
+					marginLeft: 'auto',
+					marginRight: 'auto',
+					display: 'flex'
+				}}
+			>
 				{headers.map((header, x) => (
 					// biome-ignore lint/correctness/useJsxKeyInIterable: <explanation>
-					<div tw="flex flex-col">
+					<div
+						style={{
+							display: 'flex',
+							flexDirection: 'column'
+						}}
+					>
 						<TableHeaderCell content={header} x={x} dimensions={dimensions} />
 
 						{table.map((row, y) => (
@@ -77,17 +88,42 @@ interface TableHeaderCellProps {
 }
 
 function TableHeaderCell({ content, x, dimensions }: TableHeaderCellProps) {
-	let border = ''
-	if (x === 0) border += ' border-l border-l-black'
-	if (x === dimensions.x - 1) border += ' border-r border-r-black'
+	const style = {} as Record<string, string>
 
-	let rounded = ''
-	if (x === 0) rounded = 'rounded-tl'
-	if (x === dimensions.x - 1) rounded = 'rounded-tr'
+	if (x === 0) {
+		style.borderLeftWidth = '1px'
+		style.borderLeftColor = 'black'
+	}
+	if (x === dimensions.x - 1) {
+		style.borderRightWidth = '1px'
+		style.borderRightColor = 'black'
+	}
+
+	if (x === 0) {
+		style.borderTopLeftRadius = '4px'
+	}
+	if (x === dimensions.x - 1) {
+		style.borderTopRightRadius = '4px'
+	}
 
 	return (
 		<div
-			tw={`flex p-2 pl-4 pr-8 -m-[1px] text-lg font-bold bg-white border-b-[3px] border-b-[#EDEDED] border-t border-t-black ${border} ${rounded}`}
+			style={{
+				...style,
+				margin: '-1px',
+				display: 'flex',
+				borderTopColor: 'black',
+				backgroundColor: 'white',
+				padding: '8px',
+				paddingLeft: '16px',
+				paddingRight: '32px',
+				fontSize: '18px',
+				lineHeight: '28px',
+				fontWeight: '700',
+				borderBottomWidth: '3px',
+				borderTopWidth: '1px',
+				borderBottomColor: '#EDEDED'
+			}}
 		>
 			{hasFlagIcon(content) && (
 				<FlagIcon flagIconCountryCode={resolveFlagCountryCode(content)} />
@@ -107,19 +143,38 @@ type TableCellProps = TableHeaderCellProps & {
 }
 
 function TableCell({ content, x, y, dimensions }: TableCellProps) {
-	const bg = y % 2 === 0 ? 'bg-white' : 'bg-[#F3F3F3]'
+	const style = {} as Record<string, string>
 
-	let border = ''
-	if (x === 0) border += ' border-l border-l-black'
-	if (x === dimensions.x - 1) border += ' border-r border-r-black'
-	if (y === dimensions.y - 1) border += ' border-b border-b-black'
+	style.backgroundColor = y % 2 === 0 ? 'white' : '#F3F3F3'
 
-	let rounded = ''
-	if (x === 0 && y === dimensions.y - 1) rounded = 'rounded-bl'
-	if (x === dimensions.x - 1 && y === dimensions.y - 1) rounded = 'rounded-br'
+	if (x === 0) {
+		style.borderLeftWidth = '1px'
+		style.borderLeftColor = 'black'
+	}
+	if (x === dimensions.x - 1) {
+		style.borderRightWidth = '1px'
+		style.borderRightColor = 'black'
+	}
+	if (y === dimensions.y - 1) {
+		style.borderBottomWidth = '1px'
+		style.borderBottomColor = 'black'
+	}
+	if (x === 0 && y === dimensions.y - 1) style.borderBottomLeftRadius = '4px'
+	if (x === dimensions.x - 1 && y === dimensions.y - 1)
+		style.borderBottomRightRadius = '4px'
 
 	return (
-		<div tw={`flex p-2 pl-4 pr-8 -m-[1px] text-lg  ${bg} ${border} ${rounded}`}>
+		<div
+			style={{
+				...style,
+				margin: '-1px',
+				display: 'flex',
+				padding: '8px',
+				paddingLeft: '16px',
+				paddingRight: '32px',
+				fontSize: '18px'
+			}}
+		>
 			{hasFlagIcon(content) && (
 				<FlagIcon flagIconCountryCode={resolveFlagCountryCode(content)} />
 			)}

@@ -14,14 +14,52 @@ export default function Header({
 	textColorHex = '#FFFFFF'
 }: HeaderProps): ReactNode {
 	return (
-		<div tw={`flex flex-col text-[${textColorHex}]`}>
-			{title && <div tw="mb-8 text-8xl italic font-bold">{title}</div>}
-
-			{subtitle && (
-				<div tw="mb-8 text-5xl italic font-semibold">{subtitle}</div>
+		<div
+			style={{
+				display: 'flex',
+				flexDirection: 'column',
+				color: textColorHex
+			}}
+		>
+			{title && (
+				<div
+					style={{
+						marginBottom: '32px',
+						fontSize: '96px',
+						fontWeight: '700',
+						fontStyle: 'italic',
+						lineHeight: '1'
+					}}
+				>
+					{title}
+				</div>
 			)}
 
-			{description && <div tw="mb-8 text-3xl">{description}</div>}
+			{subtitle && (
+				<div
+					style={{
+						marginBottom: '32px',
+						fontSize: '48px',
+						fontWeight: '600',
+						fontStyle: 'italic',
+						lineHeight: '1'
+					}}
+				>
+					{subtitle}
+				</div>
+			)}
+
+			{description && (
+				<div
+					style={{
+						marginBottom: '32px',
+						lineHeight: '36px',
+						fontSize: '30px'
+					}}
+				>
+					{description}
+				</div>
+			)}
 		</div>
 	)
 }

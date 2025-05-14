@@ -8,6 +8,15 @@ export default function TeamIndicator({
 	teamIndicatorColorHex
 }: TeamIndicatorProps): ReactNode {
 	return (
-		<div tw={`mr-2 my-auto w-[4px] h-[20px] bg-[${teamIndicatorColorHex}]`} />
+		<div
+			style={{
+				marginTop: 'auto',
+				marginBottom: 'auto',
+				marginRight: '8px',
+				height: '20px',
+				width: '4px',
+				backgroundColor: teamIndicatorColorHex
+			}}
+		/>
 	)
 }

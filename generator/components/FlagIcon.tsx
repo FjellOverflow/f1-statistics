@@ -273,5 +273,16 @@ export default function FlagIcon({
 	const src = `data:image/svg+xml,${encodeURIComponent(svgString)}`
 
 	// biome-ignore lint/a11y/useAltText: <explanation>
-	return <img tw="mr-2 my-auto" width={24} height={18} src={src} />
+	return (
+		<img
+			style={{
+				marginTop: 'auto',
+				marginBottom: 'auto',
+				marginRight: '8px'
+			}}
+			width={24}
+			height={18}
+			src={src}
+		/>
+	)
 }

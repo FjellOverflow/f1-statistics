@@ -11,5 +11,16 @@ export default function Footer({
 }: FooterProps): ReactNode {
 	if (!text) return <></>
 
-	return <div tw={`ml-auto text-[${textColorHex}] text-3xl`}>{text}</div>
+	return (
+		<div
+			style={{
+				marginLeft: 'auto',
+				fontSize: '30px',
+				color: textColorHex,
+				lineHeight: '36px'
+			}}
+		>
+			{text}
+		</div>
+	)
 }
