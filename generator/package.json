@@ -8,15 +8,15 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@types/bun": "^1.2.18",
-		"@types/react": "^19.1.8",
-		"typescript": "^5.8.3"
+		"@types/bun": "^1.2.20",
+		"@types/react": "^19.1.11",
+		"typescript": "^5.9.2"
 	},
 	"dependencies": {
 		"@fontsource/titillium-web": "^5.2.6",
 		"@resvg/resvg-js": "^2.6.2",
 		"flag-icons": "^7.5.0",
-		"react": "^19.1.0",
-		"satori": "^0.15.2"
+		"react": "^19.1.1",
+		"satori": "^0.16.2"
 	}
 }
