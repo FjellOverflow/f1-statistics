@@ -29,7 +29,7 @@ intra_team_comparison AS (
         END AS won
     FROM current_driver_race_results AS r1
     INNER JOIN
-        current_driver_race_results AS r2
+        race_result AS r2
         ON
             r1.race_id = r2.race_id
             AND r1.constructor_id = r2.constructor_id
@@ -46,9 +46,9 @@ driver_wins AS (
 )
 
 SELECT
-    driver.abbreviation,
-    driver_wins.total,
-    round(1.0 * driver_wins.wins / driver_wins.total, 2) AS win_percentage
+    driver.abbreviation AS driver,
+    driver_wins.total AS races_total,
+    round(1.0 * driver_wins.wins / driver_wins.total, 2) AS win_ratio
 FROM driver_wins
 INNER JOIN driver ON driver_wins.driver_id = driver.id
-ORDER BY win_percentage DESC, driver_wins.total DESC
+ORDER BY driver.abbreviation

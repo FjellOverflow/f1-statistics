@@ -52,8 +52,8 @@ driver_wins AS (
 SELECT
     driver.abbreviation AS driver,
     driver_wins.year,
-    driver_wins.total,
-    round(1.0 * driver_wins.wins / driver_wins.total, 2) AS win_percentage
+    driver_wins.total AS races_total,
+    round(1.0 * driver_wins.wins / driver_wins.total, 2) AS win_ratio
 FROM driver_wins
 INNER JOIN driver ON driver_wins.driver_id = driver.id
 ORDER BY driver ASC, driver_wins.year ASC
